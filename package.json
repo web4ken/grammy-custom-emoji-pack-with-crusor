@@ -1,6 +1,6 @@
 {
   "name": "grammy-custom-emoji-pack-with-crusor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/index.js",
   "scripts": {
     "start": "node dist/index.js",
@@ -8,9 +8,13 @@
     "build": "tsc",
     "watch": "tsc -w"
   },
-  "author": "web4ken",
+  "author": "web4ken <https://t.me/web4ken>",
   "license": "ISC",
-  "description": "",
+  "description": "Telegram bot that creates custom emoji packs from images",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/web4ken/grammy-custom-emoji-pack-with-crusor"
+  },
   "devDependencies": {
     "@types/node": "^20.11.24",
     "ts-node": "^10.9.2",
