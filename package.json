@@ -1,6 +1,6 @@
 {
   "name": "grammy-custom-emoji-pack-with-crusor",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "dist/index.js",
   "scripts": {
     "start": "node dist/index.js",
