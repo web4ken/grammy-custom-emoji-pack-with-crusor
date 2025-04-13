@@ -59,7 +59,7 @@ export class PhotoHandler {
       const config = {
         userId,
         setName: `pack_${timestamp}_by_${botUsername}`,
-        title: 'Static Emoji Pack by @web4ken',
+        title: 'Static Emoji Pack by @snpmd',
         emoji: CONFIG.DEFAULT_EMOJI,
       };
 

@@ -1,5 +1,6 @@
-import * as fs from 'fs';
-import * as path from 'path';
+import { mkdirSync, rmSync } from 'fs';
+import { tmpdir } from 'os';
+import { join } from 'path';
 import sharp from 'sharp';
 import { CONFIG } from '../config/constants';
 import { logger } from '../utils/logger';
@@ -8,12 +9,8 @@ export class ImageProcessor {
   private readonly tempDir: string;
 
   constructor() {
-    this.tempDir = path.join(
-      process.env.TMPDIR || '/tmp',
-      CONFIG.TEMP_DIR_PREFIX + Date.now()
-    );
-
-    fs.mkdirSync(this.tempDir);
+    this.tempDir = join(tmpdir(), CONFIG.TEMP_DIR_PREFIX + Date.now());
+    mkdirSync(this.tempDir, { recursive: true });
     logger.info('Created temporary directory', { path: this.tempDir });
   }
 
@@ -76,7 +73,7 @@ export class ImageProcessor {
 
     for (let y = 0; y < tilesY; y++) {
       for (let x = 0; x < tilesX; x++) {
-        const tilePath = path.join(this.tempDir, `tile_${x}_${y}.png`);
+        const tilePath = join(this.tempDir, `tile_${x}_${y}.png`);
         logger.debug('Processing tile', { x, y, path: tilePath });
 
         await image
@@ -105,7 +102,7 @@ export class ImageProcessor {
     logger.info('Cleaning up temporary files', { path: this.tempDir });
 
     try {
-      fs.rmSync(this.tempDir, { recursive: true, force: true });
+      rmSync(this.tempDir, { recursive: true, force: true });
       logger.debug('Temporary files cleaned up successfully');
     } catch (error) {
       logger.error('Error cleaning up temporary files', { error });
